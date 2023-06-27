@@ -6,6 +6,8 @@ import static java.util.stream.Collectors.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class chapter4 {
 	public static void main(String[] args) {
@@ -101,25 +103,28 @@ public class chapter4 {
 		List<Trader> transactions3 = transactions.stream()
 			.map(Transaction::getTrader)
 			.filter(trader -> trader.getCity().equals("Cambridge"))
+			.distinct()
 			.sorted(comparing(Trader::getName))
 			.collect(toList());
 
 		//4
-		List<String> transactions4 = transactions.stream()
+		String traderStr = transactions.stream()
 			.map(Transaction::getTrader)
 			.map(Trader::getName)
-			.sorted(String::compareTo)
-			.collect(toList());
+			.distinct()
+			.sorted()
+			.collect(Collectors.joining());
 
 		//5
 		boolean isMirano = transactions.stream()
 			.map(Transaction::getTrader)
 			.map(Trader::getCity)
-			.anyMatch(city -> city.equals("Milano"));
+			.anyMatch(city -> city.equals("Milan"));
 
 		//6
 		transactions.stream()
 			.filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+			.map(Transaction::getValue)
 			.forEach(System.out::println);
 
 		//7
@@ -128,8 +133,7 @@ public class chapter4 {
 			.reduce(Integer::max).orElse(0);
 
 		//8
-		int minTran = transactions.stream()
-			.map(Transaction::getValue)
-			.reduce(Integer::min).orElse(0);
+		Optional<Transaction> minTran = transactions.stream()
+			.min(comparing(Transaction::getValue));
 	}
 }
