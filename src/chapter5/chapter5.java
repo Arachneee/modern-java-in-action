@@ -3,10 +3,8 @@ package chapter5;
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public class chapter5 {
 	public static void main(String[] args) {
@@ -72,6 +70,19 @@ public class chapter5 {
 		//8
 		Optional<Transaction> minTran = transactions.stream()
 			.min(comparing(Transaction::getValue));
+
+		//피타고라스 수
+		Stream<int[]> pythagoreanTriples =
+			IntStream.rangeClosed(1,100).boxed()
+				.flatMap(a -> IntStream.rangeClosed(a,100)
+					.filter(b->Math.sqrt(a*a+b*b)%1==0)
+					.mapToObj(b -> new int[] {a,b,(int)Math.sqrt(a*a+b*b)}));
+
+		//Pivonachi
+
+		//Stream.iterate(new int[] {0,1}, n -> new int[] {n[1], n[0] + n[1]}).limit(20).forEach(i -> System.out.println(Arrays.toString(i)));
+
+		Stream.iterate(new int[] {0,1},n->n[0]+n[1] < 100, n -> new int[] {n[1], n[0] + n[1]}).limit(20).forEach(i -> System.out.println(Arrays.toString(i)));
 	}
 
 
