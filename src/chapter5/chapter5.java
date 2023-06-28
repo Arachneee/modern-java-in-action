@@ -82,7 +82,10 @@ public class chapter5 {
 
 		//Stream.iterate(new int[] {0,1}, n -> new int[] {n[1], n[0] + n[1]}).limit(20).forEach(i -> System.out.println(Arrays.toString(i)));
 
-		Stream.iterate(new int[] {0,1},n->n[0]+n[1] < 100, n -> new int[] {n[1], n[0] + n[1]}).limit(20).forEach(i -> System.out.println(Arrays.toString(i)));
+		Stream.iterate(new int[] {0,1},n->n[0]+n[1] < 100, n -> new int[] {n[1], n[0] + n[1]})
+			.limit(20)
+			.forEach(i -> System.out.println(Arrays.toString(i)));
+
 	}
 
 

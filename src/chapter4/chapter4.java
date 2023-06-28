@@ -5,11 +5,6 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import chapter5.Trader;
-import chapter5.Transaction;
 
 public class chapter4 {
 	public static void main(String[] args) {
