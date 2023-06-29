@@ -33,5 +33,8 @@ public class chapter8 {
 		// 없으면 초기화해서 추가
 		friendsToMovies.computeIfAbsent("Hogeon", name -> new ArrayList<>()).add("Star Wars");
 
+		//Map 도 repalceAll 가능. 바꿀수 있는 Map만
+		// friendsMap.replaceAll((friend, String) -> friend.toLowerCase());
+
 	}
 }
